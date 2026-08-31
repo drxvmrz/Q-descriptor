@@ -44,6 +44,8 @@ PhD research. The underlying method is described in the dissertation:
 
 ## 📚 How scripts work
 
+The main script is [calc_descriptor.py](https://github.com/drxvmrz/Q-descriptor/blob/main/scripts/calc_descriptor.py). It represents a front-end for [APEXSYMM](https://github.com/drxvmrz/apexsymm) calculation kernel.
+
 ## 💎 Database manual
 
 The database is provided as a plain-text `.txt` file containing a comma-separated list of CCDC refcodes for monoclinic crystals that satisfy the Q-descriptor criterion for a potential orthorhombic supergroup.
