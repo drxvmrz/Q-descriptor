@@ -41,23 +41,49 @@ class Settings:
         self.good_cifs_dir = args.good_cifs_dir
         self.database_path = args.database
 
+
 class Database:
-    def __init__(self):
-        self.current_ver_refs = []
-        self.good_cif_dir_refs = []
+    def __init__(self, settings : Settings):
+        self.settings = settings
+        self.current_ver_refs = set()
+        self.good_cif_dir_refs = set()
 
-    def download_last_ver(self):
-        pass
+    def load_last_ver(self):
+        with open(DATABASE_REPO_PATH, "r") as f:
+            str_arr = f.read().split(",")
+            self.current_ver_refs = set(str_arr)
 
-    def get_new_refcodes(self):
-        pass
+    def get_refcodes_from_cif_dir(self):
+        for root, dirs, files in os.walk(DATABASE_REPO_PATH):
+            if root != DATABASE_REPO_PATH: continue
+            self.current_ver_refs = set(files)
 
     def update(self):
-        pass
+        diff_set = self.good_cif_dir_refs.difference(self.current_ver_refs)
+
+        if len(diff_set) == 0: 
+            print(f"Database is up to date with respect to {self.settings.good_cifs_dir}")
+            return
+
+        diff_list = list(diff_set)
+
+        with open(DATABASE_REPO_PATH, "a") as f:
+            for ref in diff_list:
+                f.write(f"{ref}, ")
+
+        print(f"Database has been updated with respect to {self.settings.good_cifs_dir}")
+
 
 # MAIN #########################################################################
 
 def main():
-    pass
+    settings = Settings()
+    settings.parse_args()
+
+    dbase = Database(settings)
+    dbase.load_last_ver()
+    dbase.get_refcodes_from_cif_dir()
+    dbase.update()
+
 
 main()
