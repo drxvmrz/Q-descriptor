@@ -37,13 +37,14 @@ class Settings:
 
     def parse_args(self):
         args = self.parser.parse_args()
-        
+
         self.good_cifs_dir = args.good_cifs_dir
         self.database_path = args.database
 
 class Database:
     def __init__(self):
-        pass
+        self.current_ver_refs = []
+        self.good_cif_dir_refs = []
 
     def download_last_ver(self):
         pass
