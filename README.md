@@ -42,18 +42,11 @@ PhD research. The underlying method is described in the dissertation:
 > Drozhilkin, P. D. (2026). *DEVELOPMENT OF QUANTITATIVE METHODS FOR DESCRIBING THE ATOMIC STRUCTURES OF COORDINATION COMPOUNDS AND ORGANIC CRYSTALS SUBJECT TO SECOND-ORDER STRUCTURAL PHASE TRANSITIONS* (in preparation). 
 > Lobachevsky State University of Nizhny Novgorod, Russia.
 
-## 📚 How scripts work
+## 📚 Calculate your own database
 
 The main script is [calc_descriptor.py](https://github.com/drxvmrz/Q-descriptor/blob/main/scripts/calc_descriptor.py). It represents a front-end for [APEXSYMM](https://github.com/drxvmrz/apexsymm) calculation kernel.
 
-## 💎 Database manual
+## 💎 CCDC database checking
 
-The database is provided as a plain-text `.txt` file containing a comma-separated list of CCDC refcodes for monoclinic crystals that satisfy the Q-descriptor criterion for a potential orthorhombic supergroup.
-
-**How to use:**
-
-1. Obtain the refcodes of your monoclinic crystals of interest (from the CCDC database);
-
-2. Check whether a given refcode is present in the list.
 
 
