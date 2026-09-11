@@ -48,5 +48,26 @@ The main script is [calc_descriptor.py](https://github.com/drxvmrz/Q-descriptor/
 
 ## 💎 CCDC database checking
 
+If you have ever deposited monoclinic crystal structures with the _CCDC_, it is probably worth checking for their `refcode` presence in this database. 
+In this case, it is probably worth checking this crystal for a second-order monoclinic-to-orthorhombic phase transition.
 
+1. Using Python script (is needed `python` installed) 
+   
+    1. Download [check_refcode.py](https://github.com/drxvmrz/Q-descriptor/blob/main/scripts/check_refcode.py);
+  
+    2. Run this script via terminal or command prompt 
+        ```
+        python <path_to_downloaded check_refcode.py script> <refcode 1> <refcode 2> ...
+        ```
 
+2. Directly through `curl`:
+   
+    1. Unix/Unix-like (terminal):
+      ```
+      curl -sSL "https://raw.githubusercontent.com/drxvmrz/Q-descriptor/refs/heads/main/database/database.txt" | grep -E "refcode1|refcode2|..."
+      ```
+
+    2. Windows (command prompt):
+      ```
+      curl -sSL "https://raw.githubusercontent.com/drxvmrz/Q-descriptor/refs/heads/main/database/database.txt" | findstr "refcode1 refcode2 ..."
+      ```
