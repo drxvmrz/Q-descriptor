@@ -36,7 +36,7 @@ class Settings:
         return os.path.exists(self.good_cifs_dir) and os.path.exists(self.database_patha)
 
     def parse_args(self):
-        args = self.parser.parse_args([r"C:\Users\zofor\Desktop\good_cifs"])
+        args = self.parser.parse_args(["/Users/paveldrozilkin/Desktop/good_cifs"])
 
         self.good_cifs_dir = args.good_cifs_dir
         self.database_path = args.database
@@ -50,26 +50,26 @@ class Database:
 
     def load_last_ver(self):
         with open(DATABASE_REPO_PATH, "r") as f:
-            str_arr = f.read().split(",")
-            str_arr.remove(" ")
+            str_arr = f.read().split()
             self.current_ver_refs = set(str_arr)
 
     def get_refcodes_from_cif_dir(self):
         for root, dirs, files in os.walk(self.settings.good_cifs_dir):
             if root != self.settings.good_cifs_dir: continue
-            self.good_cif_dir_refs = set(files)
+            for file in files:
+                self.good_cif_dir_refs.add(file[:6])
 
     def update(self):
         diff_set = self.good_cif_dir_refs.difference(self.current_ver_refs)
 
         if len(diff_set) == 0: 
-            print(f"Database is up to date with respect to {self.settings.good_cifs_dir}")
+            print(f"The database has already been updated with respect to {self.settings.good_cifs_dir}")
             return
 
         diff_list = list(diff_set)
 
         with open(DATABASE_REPO_PATH, "a") as f:
-            for ref in diff_list: f.write(f"{ref}, ")
+            for ref in diff_list: f.write(f"{ref[:6]}\n")
 
         print(f"Database has been updated with respect to {self.settings.good_cifs_dir}")
 
