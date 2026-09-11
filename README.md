@@ -34,18 +34,6 @@ In monoclinic and orthorhombic symmetry only mirror planes and 2-fold axes are a
 
 This suggests that the crystal could potentially undergo a second-order monoclinic-to-orthorhombic phase transition, in line with the group-subgroup requirements of Landau theory.
 
-## 👨🏻‍🎓 About this work
-
-This repository contains the code and database developed as part of the author's 
-PhD research. The underlying method is described in the dissertation:
-
-> Drozhilkin, P. D. (2026). *DEVELOPMENT OF QUANTITATIVE METHODS FOR DESCRIBING THE ATOMIC STRUCTURES OF COORDINATION COMPOUNDS AND ORGANIC CRYSTALS SUBJECT TO SECOND-ORDER STRUCTURAL PHASE TRANSITIONS* (in preparation). 
-> Lobachevsky State University of Nizhny Novgorod, Russia.
-
-## 📚 Calculate your own database
-
-The main script is [calc_descriptor.py](https://github.com/drxvmrz/Q-descriptor/blob/main/scripts/calc_descriptor.py). It represents a front-end for [APEXSYMM](https://github.com/drxvmrz/apexsymm) calculation kernel.
-
 ## 💎 CCDC database checking
 
 If you have ever deposited monoclinic crystal structures with the _CCDC_, it is probably worth checking for their `refcode` presence in this database. 
@@ -71,3 +59,11 @@ In this case, it is probably worth checking this crystal for a second-order mono
       ```
       curl -sSL "https://raw.githubusercontent.com/drxvmrz/Q-descriptor/refs/heads/main/database/database.txt" | findstr "refcode1 refcode2 ..."
       ```
+
+## 👨🏻‍🎓 About this work
+
+This repository contains the code and database developed as part of the author's 
+PhD research. The underlying method is described in the dissertation:
+
+> Drozhilkin, P. D. (2026). *DEVELOPMENT OF QUANTITATIVE METHODS FOR DESCRIBING THE ATOMIC STRUCTURES OF COORDINATION COMPOUNDS AND ORGANIC CRYSTALS SUBJECT TO SECOND-ORDER STRUCTURAL PHASE TRANSITIONS* (in preparation). 
+> Lobachevsky State University of Nizhny Novgorod, Russia.
