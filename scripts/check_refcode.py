@@ -12,9 +12,8 @@ __email__ = "pddrozhilkin@yandex.ru"
 
 import os
 import sys
-import urllib.request
-import urllib.error
 import argparse
+import subprocess
 
 # GLOBAL CONSTANTS #############################################################
 
@@ -60,22 +59,17 @@ class Checker:
             self.search_status[ref] = (ref in self.database)
 
     def download_db(self):
-        try:
-            # Открываем соединение
-            with urllib.request.urlopen(DATABASE_FILE_URL) as response:
-                # Читаем байты и декодируем в UTF-8
-                html = response.read().decode('utf-8')
-                self.database = html.split(",")
-                
-                print(f"Database has been download succesfully!")
-                return html
-                 
-        except urllib.error.HTTPError as e:
-            print(f"Connection Error! {e.code} - {e.reason}")
-        except urllib.error.URLError as e:
-            print(f"Connection Error! {e.reason}")
-        except Exception as e:
-            print(f"Unknown Error! {e}")
+        result = subprocess.run(["curl", "-sSL", "--fail", "--max-time", "10", "-A", "Mozilla/5.0", DATABASE_FILE_URL],
+                capture_output=True,
+                text=True,
+                timeout=15)
+            
+        if result.returncode != 0:
+            print(f"Connection Error! curl code: {result.returncode}")
+            exit()
+
+        self.database = result.stdout.split()
+        print(f"Database has been download succesfully!")
 
 # MAIN #########################################################################
 
