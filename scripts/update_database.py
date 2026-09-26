@@ -36,7 +36,7 @@ class Settings:
         return os.path.exists(self.good_cifs_dir) and os.path.exists(self.database_patha)
 
     def parse_args(self):
-        args = self.parser.parse_args(["/Users/paveldrozilkin/Desktop/good_cifs"])
+        args = self.parser.parse_args()
 
         self.good_cifs_dir = args.good_cifs_dir
         self.database_path = args.database

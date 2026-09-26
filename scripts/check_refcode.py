@@ -10,8 +10,6 @@ __email__ = "pddrozhilkin@yandex.ru"
 
 # IMPORTS ######################################################################
 
-import os
-import sys
 import argparse
 import subprocess
 
